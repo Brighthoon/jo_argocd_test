@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pod-ip-demo
+  name: pop-ip-demo
   labels:
-    app: pod-ip-demo
+    app: pop-ip-demo
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: pod-ip-demo
+      app: pop-ip-demo
   template:
     metadata:
       labels:
-        app: pod-ip-demo
+        app: pop-ip-demo
     spec:
       containers:
         - name: web
@@ -33,10 +33,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: pod-ip-demo
+  name: pop-ip-demo
 spec:
   selector:
-    app: pod-ip-demo
+    app: pop-ip-demo
   type: NodePort
   sessionAffinity: None
   ports:
