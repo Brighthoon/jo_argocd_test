@@ -8,4 +8,9 @@ config:
 
 applications:
   - name: pop-ip-demo
+    namespace: default
+    path: pod-ip-demo                   # ← 디렉터리 경로(파일이 들어있는 폴더)
+    project: default
+    annotations:
+      argocd.argoproj.io/sync-wave: "1" # (옵션) 동기화 순서
   
