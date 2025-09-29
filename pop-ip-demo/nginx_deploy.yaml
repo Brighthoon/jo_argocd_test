@@ -24,7 +24,8 @@ spec:
             - name: POD_NAME
               valueFrom:
                 fieldRef:
-                  fieldPath: metadata.name
+                  # fieldPath: metadata.name
+                  fieldPath: status.podIP
             - name: POD_IP
               valueFrom:
                 fieldRef:
