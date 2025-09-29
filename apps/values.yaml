@@ -1,0 +1,11 @@
+config:
+  spec:
+    destination:
+      server: https://kubernetes.default.svc
+    source:
+      repoURL: https://github.com/Brighthoon/jo_argocd_test
+      targetRevision: main
+
+applications:
+  - name: pop-ip-demo
+  
