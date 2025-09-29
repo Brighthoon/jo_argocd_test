@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-ip-demo
+  labels:
+    app: pod-ip-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pod-ip-demo
+  template:
+    metadata:
+      labels:
+        app: pod-ip-demo
+    spec:
+      containers:
+        - name: web
+          image: nginxdemos/hello:latest
+          ports:
+            - containerPort: 80
+          env:
+            # 내려보기(Downward API): Pod 이름/IP를 컨테이너에 환경변수로 주입
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pod-ip-demo
+spec:
+  selector:
+    app: pod-ip-demo
+  type: NodePort
+  sessionAffinity: None
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
